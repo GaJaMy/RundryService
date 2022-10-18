@@ -3,6 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
 	id 'java'
 	id 'war'
+	id 'jacoco'
 }
 
 group = 'com.GaJaMy'
@@ -31,4 +32,10 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jacocoTestReport {
+	reports {
+		csv.enabled true
+	}
 }
