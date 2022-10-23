@@ -17,4 +17,4 @@
     + Spring Boot
     + Mysql 또는 Graphql(사용 해보고 싶음)
 4. Dcouments
-    + ERD(추후 작성)
+     ![Alt text](./Files/ERD/rundry.png)

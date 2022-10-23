@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+</head>
+<body>
+  <h1>로그인 페이지</h1>
+  <form method="post" >
+    <input type="email" name="email" placeholder="이메일 입력" required>
+    <input type="password" name="password" placeholder="비밀번호 입력" required>
+    <input type="submit" value="로그인">
+    <input type="button" onclick="location.href='/'" value="홈으로">
+  </form>
+
+  <div th:if="${result eq false}">
+    <p>로그인 실패 이메일 또는 비밀번호를 확인해 주세요</p>
+  </div>
+</body>
+</html>
