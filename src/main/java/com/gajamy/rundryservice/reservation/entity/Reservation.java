@@ -16,4 +16,5 @@ public class Reservation {
 	private int maineNum;
 	private String rundryType;
 	private String description;
+	private String test;
 }
