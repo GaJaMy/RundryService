@@ -1,11 +1,19 @@
 package com.gajamy.rundryservice.member.service;
 
-import com.gajamy.rundryservice.member.dto.MemberDto;
 import com.gajamy.rundryservice.member.entity.Member;
 import com.gajamy.rundryservice.member.param.MemberParam;
 import com.gajamy.rundryservice.member.repository.MemberRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
@@ -19,11 +27,14 @@ public class MemberServiceImpl implements MemberService{
 			return false;
 		}
 
+		String encPassword = BCrypt.hashpw(param.getPassword(),BCrypt.gensalt());
+
 		Member member = new Member();
 		member.setEmail(param.getEmail());
-		member.setPassword(param.getPassword());
+		member.setPassword(encPassword);
 		member.setName(param.getName());
 		member.setPhone(param.getPhone());
+		member.setAdmin(false);
 
 		memberRepository.save(member);
 
@@ -31,17 +42,22 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public boolean login(MemberParam param) {
-		Optional<Member> optionalMember = memberRepository.findById(param.getEmail());
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Optional<Member> optionalMember = memberRepository.findById(username);
+
 		if (!optionalMember.isPresent()) {
-			return false;
+			throw new UsernameNotFoundException("회원정보가 존재하지 않습니다.");
 		}
 
 		Member member = optionalMember.get();
-		if (!param.getPassword().equals(member.getPassword())) {
-			return false;
+
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+		grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+		if (member.isAdmin()) {
+			grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}
 
-		return true;
+		return new User(member.getEmail(),member.getPassword(),grantedAuthorities);
 	}
 }

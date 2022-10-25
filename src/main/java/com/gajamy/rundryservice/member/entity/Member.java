@@ -16,4 +16,6 @@ public class Member {
 	private String name;
 	private String phone;
 	private String password;
+
+	private boolean isAdmin;
 }

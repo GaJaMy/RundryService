@@ -8,6 +8,4 @@ public class MemberParam {
 	String name;
 	String phone;
 	String password;
-
-	boolean isAdmin;
 }

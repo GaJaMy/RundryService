@@ -10,4 +10,5 @@ class RundryServiceApplicationTests {
 	void contextLoads() {
 	}
 
+
 }

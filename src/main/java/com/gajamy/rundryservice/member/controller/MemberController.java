@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequiredArgsConstructor
 @Controller
@@ -25,16 +26,14 @@ public class MemberController {
 		return "member/register_complete";
 	}
 
-	@GetMapping("/member/login")
+	@RequestMapping("/member/login")
 	public String login(Model model){
-
 		return "member/login";
 	}
 
-	@PostMapping("/member/login")
-	public String loginSubmit(Model model, MemberParam param) {
-		boolean result = memberService.login(param);
-		model.addAttribute("result",result);
-		return "washing/list";
+	@GetMapping("/member/test")
+	public String test() {
+		return "member/test";
 	}
+
 }
