@@ -15,4 +15,5 @@ public class Reservation {
 	private LocalDateTime usageEndDt;
 	private int maineNum;
 	private String rundryType;
+	private String description;
 }
