@@ -14,7 +14,5 @@ public class Reservation {
 	private LocalDateTime usageStartDt;
 	private LocalDateTime usageEndDt;
 	private int maineNum;
-	private String rundryType;
-	private String description;
-	private String test;
+	private String laundryType;;
 }

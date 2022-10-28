@@ -39,5 +39,4 @@ public class MemberServiceTest {
 		assertEquals(result.get().getPassword(),encPassword);
 	}
 
-
 }

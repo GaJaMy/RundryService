@@ -2,12 +2,15 @@ package com.gajamy.rundryservice.member.controller;
 
 import com.gajamy.rundryservice.member.param.MemberParam;
 import com.gajamy.rundryservice.member.service.MemberService;
+import java.util.Map;
+import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
@@ -31,9 +34,29 @@ public class MemberController {
 		return "member/login";
 	}
 
-	@GetMapping("/member/test")
+	@RequestMapping("/washing/list")
 	public String test() {
-		return "member/test";
+		return "washing/list";
 	}
 
+	@RequestMapping("/member/kakao_login")
+	public String kakaoLogin() {
+		StringBuffer loginUrl = new StringBuffer();
+		loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
+		loginUrl.append("dff0cc1a6aa3a9880f70376c249edea3");
+		loginUrl.append("&redirect_uri=");
+		loginUrl.append("http://localhost:8080/kakao_callback");
+		loginUrl.append("&response_type=code");
+
+		return "redirect:"+loginUrl.toString();
+	}
+
+	@RequestMapping("/kakao_callback")
+	public String kakaoCallback(@RequestParam String code, HttpSession session){
+		String kakaoToken = memberService.getReturnAccessToken(code);
+
+		Map<String,Object> result = memberService.getuserInfo(kakaoToken);
+
+		return "washing/list";
+	}
 }

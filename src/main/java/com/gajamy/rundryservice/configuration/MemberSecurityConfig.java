@@ -26,7 +26,12 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/",
 				"/member/register",
 				"/css/**",
-				"/image/**")
+				"/image/**",
+				"/washing/list",
+				"/member/kakao_login",
+				"/member/login",
+				"/kakao_callback"
+				)
 			.permitAll();
 
 		http.authorizeRequests()
@@ -36,6 +41,7 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.formLogin()
 			.loginPage("/member/login")
+			.defaultSuccessUrl("/washing/list")
 			.permitAll();
 
 		http.logout()
