@@ -39,5 +39,26 @@ public class MemberServiceTest {
 		assertEquals(result.get().getPassword(),encPassword);
 	}
 
+	@Test
+	void registerKakaoLoinTest() {
+		//given
+		Member member = new Member();
+		member.setEmail("test@eamil.com");
+		member.setName("백수");
+		member.setKakaoLinked(true);
+		member.setAdmin(false);
+
+		//when
+		memberRepository.save(member);
+
+		//then
+		Optional<Member> result = memberRepository.findById("test@eamil.com");
+		assertEquals(result.get().getEmail(),member.getEmail());
+		assertEquals(result.get().getPassword(),member.getPassword());
+		assertEquals(result.get().getName(),member.getName());
+		assertEquals(result.get().getPhone(),member.getPhone());
+		assertEquals(result.get().isKakaoLinked(),member.isKakaoLinked());
+		assertEquals(result.get().isAdmin(),member.isAdmin());
+	}
 
 }

@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>로그인</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    Kakao.init('5d401371993f022dfa1c14a2bd479442');
+    console.log(Kakao.isInitialized());
+
+  </script>
 </head>
 <body>
   <h1>로그인 페이지</h1>
@@ -12,6 +19,10 @@
     <input type="submit" value="로그인">
     <input type="button" onclick="location.href='/'" value="홈으로">
   </form>
+
+  <a href="/member/kakao_login">
+    <img src="/image/KaKao/kakao_login_medium_narrow.png" width="222">
+  </a>
 
   <div th:if="${result eq false}">
     <p>로그인 실패 이메일 또는 비밀번호를 확인해 주세요</p>

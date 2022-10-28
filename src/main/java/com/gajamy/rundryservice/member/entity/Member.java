@@ -17,5 +17,6 @@ public class Member {
 	private String phone;
 	private String password;
 
+	private boolean isKakaoLinked;
 	private boolean isAdmin;
 }

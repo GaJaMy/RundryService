@@ -1,16 +1,26 @@
 package com.gajamy.rundryservice.admin.controller;
 
+import com.gajamy.rundryservice.admin.dto.MachineDto;
+import com.gajamy.rundryservice.admin.service.machine.MachineService;
+import com.gajamy.rundryservice.common.ListResponse;
+import com.gajamy.rundryservice.common.SingleResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 public class AdminController {
-	@RequestMapping("/admin/main.do")
-	public String main() {
-		return "admin/main";
+	private final MachineService machineService;
+
+	@PostMapping("/admin/machine/list")
+	public ListResponse<MachineDto> getMachineList() {
+		return null;
+	}
+
+	@PostMapping("/admin/machine/{modelName}")
+	public SingleResponse<MachineDto> getMachineList(@PathVariable String modelName) {
+		return machineService.getMachineInfo(modelName);
 	}
 }
