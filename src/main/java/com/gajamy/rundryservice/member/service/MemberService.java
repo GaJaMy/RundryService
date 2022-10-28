@@ -9,6 +9,8 @@ public interface MemberService extends UserDetailsService{
 
 	String getReturnAccessToken(String code);
 
-	Map<String,Object> getuserInfo(String access_toekn);
+	MemberParam getuserInfo(String access_toekn);
+
+	boolean registKakaoMember(MemberParam param);
 
 }

@@ -98,8 +98,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public Map<String, Object> getuserInfo(String access_token) {
-		Map<String,Object> resultMap = new HashMap<>();
+	public MemberParam getuserInfo(String access_token) {
+		MemberParam memberParam = new MemberParam();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		try {
 			URL url = new URL(reqURL);
@@ -123,16 +123,35 @@ public class MemberServiceImpl implements MemberService{
 
 			JsonElement element = JsonParser.parseString(result);
 
-			JsonObject kakao_account = element.getAsJsonObject().getAsJsonObject("kakao_account").getAsJsonObject();
+			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
 
+			String nickName = properties.getAsJsonObject().get("nickname").getAsString();
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
-			resultMap.put("email",email);
+			memberParam.setEmail(email);
+			memberParam.setName(nickName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return resultMap;
+		return memberParam;
+	}
+
+	public boolean registKakaoMember(MemberParam param) {
+		Optional<Member> optionalMember = memberRepository.findById(param.getEmail());
+		if (optionalMember.isPresent()) {
+			return false;
+		}
+		Member member = new Member();
+		member.setEmail(param.getEmail());
+		member.setName(param.getName());
+		member.setKakaoLinked(true);
+		member.setAdmin(false);
+
+		memberRepository.save(member);
+
+		return true;
 	}
 
 	@Override

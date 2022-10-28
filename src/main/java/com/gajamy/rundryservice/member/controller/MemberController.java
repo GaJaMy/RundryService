@@ -1,5 +1,6 @@
 package com.gajamy.rundryservice.member.controller;
 
+import com.gajamy.rundryservice.member.entity.Member;
 import com.gajamy.rundryservice.member.param.MemberParam;
 import com.gajamy.rundryservice.member.service.MemberService;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class MemberController {
 	public String kakaoCallback(@RequestParam String code, HttpSession session){
 		String kakaoToken = memberService.getReturnAccessToken(code);
 
-		Map<String,Object> result = memberService.getuserInfo(kakaoToken);
-
+		MemberParam result = memberService.getuserInfo(kakaoToken);
+		memberService.registKakaoMember(result);
 		return "washing/list";
 	}
 }
