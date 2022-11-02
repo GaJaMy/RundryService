@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기기 등록</title>
+</head>
+<body>
+  <h1>기기 등록</h1>
+  <div>
+    <form>
+      <table>
+        <tbody>
+        <tr>
+          <th>
+            모델 명
+          </th>
+<!--          <td>-->
+<!--            <input th:value="${detail.machineModel}" type="text" name="machineModel" required placeholder="모델 명 입력">-->
+<!--          </td>-->
+        </tr>
+        <tr>
+          <th>
+            기기 종류
+          </th>
+<!--          <td>-->
+<!--            <input th:value="${detail.machineType}" type="text" name="machineType" required placeholder="기기 종류 입력">-->
+<!--          </td>-->
+        </tr>
+        <tr>
+          <th>
+            세탁물 종류
+          </th>
+<!--          <td>-->
+<!--            <input th:value="${detail.laundryType}" type="text" name="laundryType" required placeholder="세탁물 종류 입력">-->
+<!--          </td>-->
+        </tr>
+        <tr>
+          <th>
+            크기 분류
+          </th>
+<!--          <td>-->
+<!--            <input th:value="${detail.size}" type="text" name="size" required placeholder="크기 입력">-->
+<!--          </td>-->
+        </tr>
+        </tbody>
+      </table>
+      <div class="buttons">
+<!--        <button th:if="${editMode}" type="submit">기기 수정</button>-->
+<!--        <button th:if="${!editMode}" type="submit">기기 등록</button>-->
+        <a href="/admin/machine/list">목록 이동</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

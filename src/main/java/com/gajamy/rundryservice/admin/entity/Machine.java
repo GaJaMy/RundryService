@@ -16,10 +16,8 @@ public class Machine {
 	@Id
 	private String machineModel;
 	private String machineType;
-	private int size;
+	private String size;
 	private String laundryType;
-	@Column(length = 1000)
-	private String options;
 	private String state;
 	private LocalDateTime startDt;
 	private LocalDateTime endDt;

@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
   <title>기기 목록</title>
+  <style>
+    .list table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .list table th, .list table td {
+      border: solid 1px #000;
+    }
+  </style>
 </head>
 <body>
+  <h1>세탁기/건조기 목록</h1>
+  <a href="#">기기 목록</a>
+  |
+  <a href="#">회원 관리</a>
 
+  <div class="list">
+    <a href="/admin/machine/add">기기 등록</a>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            모델 명
+          </th>
+        </tr>
+        <tr>
+          <th>
+            기기 종류
+          </th>
+        </tr>
+        <tr>
+          <th>
+            세탁물 종류
+          </th>
+        </tr>
+        <tr>
+          <th>
+            크기 분류
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </body>
 </html>
