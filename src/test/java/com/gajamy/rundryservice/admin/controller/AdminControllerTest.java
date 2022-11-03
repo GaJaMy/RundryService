@@ -42,29 +42,6 @@ class AdminControllerTest {
 	}
 
 	@Test
-	@WithMockUser(username = "mansa0805@naver.com",roles = "ADMIN")
-	void getMachineInfo() throws Exception {
-	  	//given
-		given(machineService.getMachineInfo(anyString()))
-			.willReturn(SingleResponse.builder()
-				.result(false)
-				.statusCode(101)
-				.errorMessage("Not Found Machine")
-				.data(null)
-				.build());
-	  	//when
-
-	  	//then
-		mvc.perform(post("/admin/machine/0000"))
-			.andDo(print())
-			.andExpect(jsonPath("$.result").value(false))
-			.andExpect(jsonPath("$.statusCode").value(101))
-			.andExpect(jsonPath("$.errorMessage").value("Not Found Machine"))
-			.andExpect(jsonPath("$.data").isEmpty())
-			.andExpect(status().isOk());
-	}
-
-	@Test
 	void testGetMachineList() {
 	}
 }
