@@ -19,6 +19,8 @@ public class Machine {
 	private String size;
 	private String laundryType;
 	private String state;
+	private String laundryCourse;
+	private String softener;
 	private LocalDateTime startDt;
 	private LocalDateTime endDt;
 }
