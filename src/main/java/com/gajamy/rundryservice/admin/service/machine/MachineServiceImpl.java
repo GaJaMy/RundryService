@@ -4,8 +4,6 @@ import com.gajamy.rundryservice.admin.dto.MachineDto;
 import com.gajamy.rundryservice.admin.entity.Machine;
 import com.gajamy.rundryservice.admin.param.MachineParam;
 import com.gajamy.rundryservice.admin.repository.MachineRepository;
-import com.gajamy.rundryservice.common.ListResponse;
-import com.gajamy.rundryservice.common.SingleResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
