@@ -9,7 +9,7 @@ public interface MachineService {
 
 	MachineDto getMachine(MachineParam param);
 
-	void set(MachineParam param);
+	boolean set(MachineDto machineDto);
 
 	void add(MachineParam param);
 }

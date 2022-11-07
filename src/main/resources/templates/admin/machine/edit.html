@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>기기 수정</title>
+  <style>
+    table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      border: solid 1px #000;
+    }
+  </style>
+</head>
+<body>
+<h1>기기 수정</h1>
+<div>
+  <form method="post">
+    <table>
+      <tbody>
+      <tr>
+        <th>
+          모델 명
+        </th>
+        <td>
+          <input th:value="${detail.machineModel}" type="text" name="machineModel" required placeholder="모델 명 입력">
+        </td>
+      </tr>
+      <tr>
+        <th>
+          기기 종류
+        </th>
+        <td>
+          <select name="machineType">
+            <option th:selected="${detail.machineType == '세탁기'}">세탁기</option>
+            <option th:selected="${detail.machineType == '건조기'}">건조기</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          세탁물 종류
+        </th>
+        <td>
+          <select name="laundryType" required>
+            <option th:selected="${detail.laundryType == '일반'}">일반</option>
+            <option th:selected="${detail.laundryType == '이불'}">이불</option>
+            <option th:selected="${detail.laundryType == '운동화'}">운동화</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          크기 분류
+        </th>
+        <td>
+          <select name="size">
+            <option th:selected="${detail.size == '소형'}">소형(0~3kg)</option>
+            <option th:selected="${detail.size == '중형'}">중형(4~10kg)</option>
+            <option th:selected="${detail.size == '대형'}">대형(10~16kg)</option>
+          </select></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="buttons">
+      <button type="submit">기기 수정</button>
+      <a href="/admin/machine/list">목록 이동</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

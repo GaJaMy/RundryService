@@ -62,18 +62,24 @@ public class MachineServiceImpl implements MachineService{
 	}
 
 	@Override
-	public void set(MachineParam param) {
-		String parseModel = param.getMachineModel().split(",")[0];
+	public boolean set(MachineDto machineDto) {
+		String parseModel = machineDto.getMachineModel().split(",")[0];
+
 		Optional<Machine> optionalMachine = machineRepository.findById(parseModel);
 
 		Machine machine = optionalMachine.get();
 
-		machine.setMachineModel(parseModel);
-		machine.setMachineType(param.getMachineType());
-		machine.setSize(param.getSize());
-		machine.setLaundryType(param.getLaundryType());
+		if (machine == null) {
+			return false;
+		}
+
+		machine.setMachineModel(machineDto.getMachineModel());
+		machine.setMachineType(machineDto.getMachineType());
+		machine.setSize(machineDto.getSize());
+		machine.setLaundryType(machineDto.getLaundryType());
 
 		machineRepository.save(machine);
+		return true;
 	}
 
 	@Override
