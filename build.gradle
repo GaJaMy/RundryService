@@ -10,6 +10,10 @@ group = 'com.GaJaMy'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+jacoco {
+	toolVersion = "0.8.5"
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
@@ -38,10 +42,13 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy 'jacocoTestReport'
 }
 
 jacocoTestReport {
 	reports {
 		csv.enabled true
+		xml.enabled true
 	}
+	finalizedBy 'jacocoTestCoverageVerification'
 }

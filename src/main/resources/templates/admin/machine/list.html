@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>기기 목록</title>
+  <style>
+    .list table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .list table th, .list table td {
+      border: solid 1px #000;
+    }
+  </style>
 </head>
 <body>
+  <h1>세탁기/건조기 목록</h1>
+  <a href="/admin/machine/list">기기 목록</a>
+  |
+  <a href="#">회원 관리</a>
 
+  <div class="list">
+    <a href="/admin/machine/add">기기 등록</a>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            모델 명
+          </th>
+          <th>
+            기기 종류
+          </th>
+          <th>
+            세탁물 종류
+          </th>
+          <th>
+            크기 분류
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="x : ${list}">
+          <td>
+            <p>
+              <a th:href="'edit?machineModel='+${x.machineModel}" th:text="${x.machineModel}">모델 명</a>
+            </p>
+          </td>
+          <td>
+            <p th:text="${x.machineType}">기기 종류</p>
+          </td>
+          <td>
+            <p th:text="${x.laundryType}">세탁물 종류</p>
+          </td>
+          <td>
+            <p th:text="${x.size}">크기 종류</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
