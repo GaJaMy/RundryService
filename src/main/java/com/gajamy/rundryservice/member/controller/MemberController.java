@@ -56,7 +56,7 @@ public class MemberController {
 	public String kakaoCallback(@RequestParam String code, HttpSession session){
 		String kakaoToken = memberService.getReturnAccessToken(code);
 
-		MemberParam result = memberService.getuserInfo(kakaoToken);
+		MemberParam result = memberService.getUserInfo(kakaoToken);
 		memberService.registKakaoMember(result);
 		return "washing/list";
 	}

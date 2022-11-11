@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController {
 	private final MachineService machineService;
-	private final MemberManageService memberManageService;
 
 	@GetMapping("/admin/machine/list")
 	public String list(Model model) {
