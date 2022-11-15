@@ -57,6 +57,7 @@ public class AdminController {
 		model.addAttribute("detail",machineDto);
 
 		return "admin/machine/edit";
+
 	}
 
 	@PostMapping("admin/machine/edit")
