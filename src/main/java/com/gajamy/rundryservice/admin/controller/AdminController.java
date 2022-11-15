@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController {
 	private final MachineService machineService;
-	private final MemberManageService memberManageService;
 
 	@GetMapping("/admin/machine/list")
 	public String list(Model model) {
@@ -34,7 +33,7 @@ public class AdminController {
 		return "admin/machine/add";
 	}
 
-	@PostMapping(value = {"/admin/machine/add","/admin/machine/edit"})
+	@PostMapping("/admin/machine/add")
 	public String addSubmit(Model model,HttpServletRequest request, MachineParam param) {
 		if (param.getMachineModel().isEmpty()) {
 			model.addAttribute("message","모델 명이 없습니다.");

@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>회원관리</title>
+  <style>
+    table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      border: solid 1px #000;
+    }
+  </style>
 </head>
 <body>
-
+  <h1>회원 관리</h1>
+  <a href="/admin/machine/list">기기 목록</a>
+  |
+  <a href="/admin/member/list">회원 관리</a>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            아이디
+          </th>
+          <th>
+            이름
+          </th>
+          <th>
+            전화번호
+          </th>
+          <th>
+            카카오 연동 여부
+          </th>
+          <th>
+            비고
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="x : ${list}">
+          <td>
+            <p align="center">
+              <a href="#" th:text="${x.email}" align="center">이메일</a>
+            </p>
+          </td>
+          <td>
+            <p th:text="${x.name}" align="center">이름</p>
+          </td>
+          <td>
+            <p th:text="${x.phone}" align="center">전화번호</p>
+          </td>
+          <td>
+            <p th:if="${x.kakaoLinked}" align="center">O</p>
+            <p th:if="${!x.kakaoLinked}" align="center">X</p>
+          </td>
+          <td>
+            <input type="button" th:if="${x.kakaoLinked}" value="관리자 등록">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>

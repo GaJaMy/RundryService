@@ -1,5 +1,6 @@
 package com.gajamy.rundryservice.member.service;
 
+import com.gajamy.rundryservice.member.dto.MemberDto;
 import com.gajamy.rundryservice.member.entity.Member;
 import com.gajamy.rundryservice.member.param.MemberParam;
 import com.gajamy.rundryservice.member.repository.MemberRepository;
@@ -12,12 +13,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -98,7 +96,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberParam getuserInfo(String access_token) {
+	public MemberParam getUserInfo(String access_token) {
 		MemberParam memberParam = new MemberParam();
 		String reqURL = "https://kapi.kakao.com/v2/user/me";
 		try {
@@ -143,12 +141,50 @@ public class MemberServiceImpl implements MemberService{
 		if (optionalMember.isPresent()) {
 			return false;
 		}
+
 		Member member = new Member();
 		member.setEmail(param.getEmail());
 		member.setName(param.getName());
 		member.setKakaoLinked(true);
 		member.setAdmin(false);
 
+		memberRepository.save(member);
+
+		return true;
+	}
+
+	@Override
+	public List<MemberDto> getMemberList() {
+		List<MemberDto> memberDtoList = new ArrayList<>();
+
+		for (Member member : memberRepository.findAll()) {
+			MemberDto memberDto = MemberDto.builder()
+				.email(member.getEmail())
+				.name(member.getName())
+				.phone(member.getPhone())
+				.isKakaoLinked(member.isKakaoLinked())
+				.build();
+			memberDtoList.add(memberDto);
+		}
+
+		return memberDtoList;
+	}
+
+	@Override
+	public boolean authorize(String name) {
+		Optional<Member> optionalMember = memberRepository.findById(name);
+
+		if (!optionalMember.isPresent()) {
+			return false;
+		}
+
+		Member member = optionalMember.get();
+
+		if (member.isKakaoLinked()) {
+			return false;
+		}
+
+		member.setAdmin(true);
 		memberRepository.save(member);
 
 		return true;
