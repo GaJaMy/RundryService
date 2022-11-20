@@ -1,0 +1,40 @@
+body {
+  margin:0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('../../image/Main/background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+body h1 {
+  text-align: center;
+}
+
+section .login {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+section .login .login-non {
+  display: flex;
+  justify-content: center;
+}
+
+section .login .login-kakao {
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+section .login .login-non .login-form .buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#home-button, #login-button {
+  width: 100px;
+}

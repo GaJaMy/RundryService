@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>기기 상세 정보</title>
+  <link rel="stylesheet" type="text/css" href="/css/washing/detail.css">
 </head>
 <body>
+<div class="wrapper">
+  <header>
+    <h1 th:text="${machine.machineModel}"></h1>
+  </header>
+  <section>
+    <table>
+      <tbody>
+      <tr>
+        <th>
+          기기 종류
+        </th>
+        <td>
+          <p th:text="${machine.machineType}"></p>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          투입 세탁물 종류
+        </th>
+        <td>
+          <p th:text="${machine.laundryType}"></p>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          크기 분류
+        </th>
+        <td>
+          <p th:text="${machine.size}"></p>
+        </td >
+      </tr>
+      </tbody>
+    </table>
 
+  </section>
+  <footer>
+
+  </footer>
+</div>
 </body>
 </html>

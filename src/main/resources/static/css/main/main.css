@@ -10,3 +10,34 @@ body {
 body h1 {
   text-align: center;
 }
+
+section .content {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: row;
+}
+
+section .content .login{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}
+
+span {
+  text-align: center;
+}
+
+img {
+  width: 50%;
+  display: block;
+  margin: auto;;
+}
+
+section .content .register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+}

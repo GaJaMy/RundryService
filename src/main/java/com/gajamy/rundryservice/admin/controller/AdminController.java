@@ -25,7 +25,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/machine/add")
-	public String add(Model model, HttpServletRequest request, MachineParam param) {
+	public String add(Model model) {
 		MachineDto detail = new MachineDto();
 
 		model.addAttribute("detail",detail);

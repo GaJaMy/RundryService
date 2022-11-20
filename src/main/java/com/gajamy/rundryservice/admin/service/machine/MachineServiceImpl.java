@@ -62,6 +62,29 @@ public class MachineServiceImpl implements MachineService{
 	}
 
 	@Override
+	public MachineDto getMachineName(String machineModel) {
+		Optional<Machine> optionalMachine = machineRepository.findById(machineModel);
+
+		if (!optionalMachine.isPresent()) {
+			return null;
+		}
+
+		Machine machine = optionalMachine.get();
+
+		return MachineDto.builder()
+			.machineModel(machine.getMachineModel())
+			.machineType(machine.getMachineType())
+			.size(machine.getSize())
+			.laundryType(machine.getLaundryType())
+			.state(machine.getState())
+			.laundryCourse(machine.getLaundryCourse())
+			.softener(machine.getSoftener())
+			.startDt(machine.getStartDt())
+			.endDt(machine.getEndDt())
+			.build();
+	}
+
+	@Override
 	public boolean set(MachineDto machineDto) {
 		String parseModel = machineDto.getMachineModel().split(",")[0];
 
@@ -73,7 +96,7 @@ public class MachineServiceImpl implements MachineService{
 			return false;
 		}
 
-		machine.setMachineModel(machineDto.getMachineModel());
+		machine.setMachineModel(parseModel);
 		machine.setMachineType(machineDto.getMachineType());
 		machine.setSize(machineDto.getSize());
 		machine.setLaundryType(machineDto.getLaundryType());

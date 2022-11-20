@@ -3,29 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>로그인</title>
+  <link rel="stylesheet" type="text/css" href="/css/member/login.css">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js" integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
   <script type="text/javascript">
     Kakao.init('5d401371993f022dfa1c14a2bd479442');
     console.log(Kakao.isInitialized());
-
   </script>
 </head>
 <body>
-  <h1>로그인 페이지</h1>
-  <form method="post">
-    <input type="text" name="username" placeholder="이메일 입력" required>
-    <input type="password" name="password" placeholder="비밀번호 입력" required>
-    <input type="submit" value="로그인">
-    <input type="button" onclick="location.href='/'" value="홈으로">
-  </form>
+  <div class="wrapper">
+    <header>
+      <h1>로그인 페이지</h1>
+    </header>
+    <section>
+      <div class="login">
+        <div class="login-non">
+          <form method="post" class="login-form">
+            <div>
+              <label>이메일 : <input type="text" name="username" placeholder="이메일 입력" required></label>
+            </div>
+            <div>
+              <label>비밀번호 : <input type="password" name="password" placeholder="비밀번호 입력" required></label>
+            </div>
+            <div class="buttons">
+              <input type="submit" value="로그인" id="login-button">
+              <input type="button" onclick="location.href='/'" value="홈으로" id="home-button">
+            </div>
+          </form>
+        </div>
 
-  <a href="/member/kakao_login">
-    <img src="/image/KaKao/kakao_login_medium_narrow.png" width="222">
-  </a>
+        <div class="login-kakao">
+          <a href="/member/kakao_login">
+            <img src="/image/KaKao/kakao_login_medium_narrow.png" width="222">
+          </a>
+        </div>
 
-  <div th:if="${result eq false}">
-    <p>로그인 실패 이메일 또는 비밀번호를 확인해 주세요</p>
+        <div th:if="${result eq false}">
+          <p>로그인 실패 이메일 또는 비밀번호를 확인해 주세요</p>
+        </div>
+      </div>
+    </section>
+    <footer>
+
+    </footer>
   </div>
 </body>
 </html>

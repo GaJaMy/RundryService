@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>예약 하기</title>
+</head>
+<body>
+<h1>결과</h1>
+<p th:if="${result}">예약 완료</p>
+<p th:if="${!result}">예약 실패</p>
+<a href="/washing/list">리스트로 돌아가기</a>
+</body>
+</html>

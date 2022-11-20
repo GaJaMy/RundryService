@@ -8,6 +8,7 @@ public interface MachineService {
 	List<MachineDto> list();
 
 	MachineDto getMachine(MachineParam param);
+	MachineDto getMachineName(String machineModel);
 
 	boolean set(MachineDto machineDto);
 

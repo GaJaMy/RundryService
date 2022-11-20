@@ -1,10 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>예약하기</title>
+  <link rel="stylesheet" type="text/css" href="/css/washing/reservation.css">
 </head>
 <body>
+<div class="wrapper">
+  <header>
+    <h1>예약 하기</h1>
+    <div class="contents">
+      <form method="get" action="/washing/reservation/search">
+        <input type="hidden" name="machineModel" th:value="${machineModel}">
+        <label id="search-label">예약일 조회 -
+          <input id="search-date" type="date" name="date" th:value="${curDate}">
+        </label>
+        <input id="search-button" type="submit" value="조회">
+      </form>
+      <div class="userFunction">
+        <a href="/member/mypage" class="userFunction-mypage">
+          <img src="/image/img/user.png" id="mypage" alt="내정보">
+        </a>
+        <a href="member/logout">
+          <img src="/image/img/logout.png" id="logout" alt="로그 아웃">
+        </a>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="machine-info">
+      <h2 th:text="${machineModel}"></h2>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>사용 시작 시간</th>
+        <th>사용 종료 시간</th>
+        <th>예약</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${#lists.isEmpty(list)}">
+        <td colspan="3">
+          <p id="none">조회 일자를 입력후 조회 버튼을 눌러 주세요.</p>
+        </td>
+      </tr>
+      <tr th:if="${!#lists.isEmpty(list)}" th:each="x : ${list}">
+        <td>
+          <p th:text="${x.usageStartDt}"></p>
+        </td>
+        <td>
+          <p th:text="${x.usageEndDt}"></p>
+        </td>
+        <td>
+          <form method="get" action="do">
+            <input type="hidden" name="machineModel" th:value="${machineModel}">
+            <input type="hidden" name="date" th:value="${x.usageStartDt}">
+            <input th:if="${x.ableReservation}" type="submit" value="예약 하기">
+          </form>
+          <p th:if="${!x.ableReservation}">예약 불가</p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+  <footer>
 
+  </footer>
+</div>
 </body>
 </html>

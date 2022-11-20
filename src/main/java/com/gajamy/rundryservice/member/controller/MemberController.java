@@ -1,9 +1,7 @@
 package com.gajamy.rundryservice.member.controller;
 
-import com.gajamy.rundryservice.member.entity.Member;
 import com.gajamy.rundryservice.member.param.MemberParam;
 import com.gajamy.rundryservice.member.service.MemberService;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -31,12 +29,12 @@ public class MemberController {
 	}
 
 	@RequestMapping("/member/login")
-	public String login(Model model){
+	public String login(){
 		return "member/login";
 	}
 
 	@RequestMapping("/washing/list")
-	public String test() {
+	public String list() {
 		return "washing/list";
 	}
 
@@ -58,6 +56,12 @@ public class MemberController {
 
 		MemberParam result = memberService.getUserInfo(kakaoToken);
 		memberService.registKakaoMember(result);
-		return "washing/list";
+		return "redirect:washing/list";
 	}
+
+	@GetMapping("member/mypage")
+	public String myPage() {
+		return "member/mypage";
+	}
+
 }

@@ -3,49 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <title>세탁/건조기 목록</title>
-  <style>
-    .machine-list {
-      width: 100%;
-      height: 100%;
-      background-color: blue;
-    }
-
-    .machine-list .machine {
-      margin: 10px;
-      float: left;
-      width: 25%;
-      height: 300px;
-      background-color: red;
-    }
-
-    .machine-list .machine #model {
-      text-align: center;
-      border: solid 1px #000;
-      box-sizing: border-box;
-      margin: 0;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="/css/washing/list.css">
 </head>
 <body>
-  <div class="machine-list">
-    <div class="machine" th:each="x : ${list}">
-      <div>
-        <p id="type" th:text="${x.machineType}"></p>
+  <div class="wrapper">
+    <header>
+      <h1>기기 목록</h1>
+      <div class="contents">
+        <div class="userFunction">
+          <a href="/member/mypage" class="userFunction-mypage">
+            <img src="/image/img/user.png" id="mypage" alt="내정보">
+          </a>
+          <a href="member/logout" class="userFunction-logout">
+            <img src="/image/img/logout.png" id="logout" alt="로그 아웃">
+          </a>
+        </div>
       </div>
-      <div>
-        <p id="model" th:text="${x.machineModel}"></p>
+    </header>
+    <section>
+      <div class="machine-list">
+        <div class="machine" th:each="x : ${list}">
+          <div class="machine-type">
+            <p id="type" th:text="${x.machineType}"></p>
+          </div>
+          <div class="machine-model">
+            <p id="model">
+              <a th:href="'detail?machineModel='+${x.machineModel}" th:text="${x.machineModel}"></a>
+            </p>
+          </div>
+          <div class="machine-state">
+            <p id="state" th:text="${x.state}"></p>
+          </div>
+          <div class="machine-reservation">
+            <form method="get" action="reservation">
+              <input type="hidden" name="machineModel" th:value="${x.machineModel}">
+              <input type="submit" id="reservation-button" value="예약 하기">
+            </form>
+          </div>
+        </div>
       </div>
-      <div>
-        <p id="state" th:text="${x.state}"></p>
-      </div>
-      <div>
-        <label>남은시간</label>
-        <h2 id="time">30:00</h2>
-      </div>
-      <div>
-        <input type="button" value="예약 하기">
-      </div>
-    </div>
+    </section>
+    <footer>
+
+    </footer>
   </div>
 </body>
 </html>

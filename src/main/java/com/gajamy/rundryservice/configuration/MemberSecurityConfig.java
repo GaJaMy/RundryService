@@ -26,6 +26,8 @@ public class MemberSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/",
 				"/member/register",
 				"/css/**",
+				"/css/member/**",
+				"/css/main/**",
 				"/image/**",
 				"/washing/list",
 				"/member/kakao_login",

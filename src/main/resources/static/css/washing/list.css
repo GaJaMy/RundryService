@@ -1,0 +1,81 @@
+body {
+  margin:0;
+  padding: 0;
+  height: 100vh;
+  background-image: url('../../image/Main/background.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+body .wrapper header h1 {
+  text-align: center;
+}
+
+body .wrapper .contents {
+  display: flex;
+  justify-content: right;
+}
+
+body .wrapper header .contents .userFunction {
+}
+
+#mypage {
+  width: 30px;
+  height: 30px;
+}
+
+#logout {
+  width: 30px;
+  height: 30px;
+}
+
+body .wrapper section .machine-list {
+  width: 100%;
+  height: 100%;
+  background-color: blue;
+}
+
+body .wrapper section .machine-list .machine {
+  margin: 10px;
+  float: left;
+  width: 25%;
+  height: 80px;
+  background-color: lightskyblue;
+  border: solid 1px #000;
+}
+
+body .wrapper section .machine-list .machine-time {
+  border-top: solid 1px #000;
+  margin: 0;
+}
+
+#model {
+  text-align: center;
+  border-top: solid 1px #000;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#time-span {
+  text-align: center;
+  margin: 0;
+}
+
+#type {
+  text-align: center;
+  margin: 0;
+}
+
+#state {
+  text-align: center;
+  margin: 0;
+}
+
+body .wrapper section .machine-list .machine-reservation {
+  border-top: solid 1px #000;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+
